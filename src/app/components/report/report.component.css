@@ -1,0 +1,49 @@
+.table-report{
+  width: 100%;
+  border-spacing: 0;
+  margin: 1rem 0;
+}
+
+.table-report th{
+  padding: 1rem 0.5rem;
+  vertical-align: top;
+  font-weight: 300;
+  cursor: pointer;
+}
+
+.table-report td{
+  padding: 1rem;
+}
+
+.table-report thead tr th:first-child,
+.table-report tbody tr td:first-child,
+.table-report tfoot tr td:first-child{
+  padding-left: 0 !important;
+}
+
+.table-report thead tr th:last-child,
+.table-report tbody tr td:last-child,
+.table-report tfoot tr td:last-child{
+  padding-right: 0 !important;
+}
+
+.border-r{
+  border-right: 1px solid #d5d5d5;
+}
+
+.font-150{
+  font-size: 150%;
+}
+
+.table{
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.table-row{
+  display: flex;
+}
+
+.d-inline-block{
+  display: inline-block;
+}

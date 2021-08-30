@@ -1,1 +1,47 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+body{
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  color: #43464a;
+}
+
+.container{
+  width: calc(90% - 1rem);
+  max-width: 65rem;
+  margin: auto;
+  padding: 1rem;
+}
+
+.c-responsive{
+  overflow-x: auto;
+}
+
+.font-light{
+  font-weight: 300 !important;
+}
+
+.font-semi-bold{
+  font-weight: 600 !important;
+}
+
+.color-dark{
+  color: #43464a !important;
+}
+
+.color-gray{
+  color: #adb1b4 !important;
+}
+
+.text-left{
+  text-align: left !important;
+}
+
+.text-right{
+  text-align: right;
+}
+
+.text-center{
+  text-align: center;
+}

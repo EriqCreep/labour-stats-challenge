@@ -1,0 +1,78 @@
+<div class="container">
+  <h1 class="font-light">Labour cost report</h1>
+
+  <div class="c-responsive">
+    <table class="table-report">
+      <thead>
+      <tr class="color-gray font-light">
+        <th class="text-left" (click)="sortColumn('name')">
+          <div class="d-inline-block">PAYROLL<br>PROVIDER</div>
+          <app-direction-indicator [direction]="activeColumnDirection" [active]="showColumnDirection('name')">
+          </app-direction-indicator>
+        </th>
+        <th class="text-left" (click)="sortColumn('workerCount')">
+          <div class="d-inline-block">WORKER</div>
+          <app-direction-indicator [direction]="activeColumnDirection" [active]="showColumnDirection('workerCount')">
+          </app-direction-indicator>
+        </th>
+        <th class="text-left" (click)="sortColumn('complianceStatsTotal')">
+          <div class="d-inline-block">COMPLIANCE<br>SCORE</div>
+          <app-direction-indicator [direction]="activeColumnDirection" [active]="showColumnDirection('complianceStatsTotal')">
+          </app-direction-indicator>
+        </th>
+        <th class="text-right" (click)="sortColumn('grossPayTotal')">
+          <div class="d-inline-block">GROSS<br>PAY(£)</div>
+          <app-direction-indicator [direction]="activeColumnDirection" [active]="showColumnDirection('grossPayTotal')">
+          </app-direction-indicator>
+        </th>
+        <th class="text-right" (click)="sortColumn('payrollAdminTotal')">
+          <div class="d-inline-block">PAYROLL<br>ADMIN(£)</div>
+          <app-direction-indicator [direction]="activeColumnDirection" [active]="showColumnDirection('payrollAdminTotal')">
+          </app-direction-indicator>
+        </th>
+        <th class="text-right" (click)="sortColumn('labourCostTotal')">
+          <div class="d-inline-block">LABOUR<br>COST(£)</div>
+          <app-direction-indicator [direction]="activeColumnDirection" [active]="showColumnDirection('labourCostTotal')">
+          </app-direction-indicator>
+        </th>
+        <th class="text-right" (click)="sortColumn('workerCount')">
+          <div class="d-inline-block">WORK-<br>FORCE</div>
+          <app-direction-indicator [direction]="activeColumnDirection" [active]="showColumnDirection('workerCount')">
+          </app-direction-indicator>
+        </th>
+      </tr>
+      <br>
+      </thead>
+      <tbody *ngIf="reportData" [@rowsAnimation]="reportData.length">
+      <ng-template ngFor let-stat [ngForOf]="reportData" let-statIndex="index">
+        <tr class="color-gray font-semi-bold">
+          <td class="text-left" [ngClass]="{'color-dark': this.activeColumnSorted === 'name'}">{{stat.name}}</td>
+          <td class="text-left font-150 font-light" [ngClass]="{'color-dark': this.activeColumnSorted === 'workerCount'}">{{stat.workerCount | number}}</td>
+          <td class="text-left border-r" [ngClass]="{'color-dark': this.activeColumnSorted === 'complianceStatsTotal'}">{{utilService.getPercentDecimal(stat.complianceStatsTotal, 100) | percent}}</td>
+          <td class="text-right font-150 font-light" [ngClass]="{'color-dark': this.activeColumnSorted === 'grossPayTotal'}">{{stat.grossPayTotal | number}}</td>
+          <td class="text-right" [ngClass]="{'color-dark': this.activeColumnSorted === 'payrollAdminTotal'}">{{stat.payrollAdminTotal || '-'}}</td>
+          <td class="text-right border-r font-150 font-light" [ngClass]="{'color-dark': this.activeColumnSorted === 'labourCostTotal'}">{{stat.labourCostTotal | number}}</td>
+          <td class="text-right" [ngClass]="{'color-dark': this.activeColumnSorted === 'workerCount'}">{{utilService.getPercentDecimal(stat.workerCount, reportTotal.workerCount) | percent:'1.1'}}</td>
+        </tr>
+        <ng-container *ngIf="statIndex == 0 && activeColumnSorted == 'name'">
+          <br> <br>
+        </ng-container>
+      </ng-template>
+      <ng-container *ngIf="reportTotal">
+        <br>
+        <br>
+        <tr class="color-dark font-semi-bold">
+          <td class="text-right">TOTAL</td>
+          <td class="text-left font-150 font-light">{{reportTotal.workerCount | number}}</td>
+          <td class="text-left border-r">{{utilService.getPercentDecimal(reportTotal.complianceStats?.Total, 100) | percent}}</td>
+          <td class="text-right font-150 font-light">{{reportTotal.grossPayTotal | number}}</td>
+          <td class="text-right">{{reportTotal.payrollAdminTotal || '-'}}</td>
+          <td class="text-right border-r font-150 font-light">{{reportTotal.labourCostTotal | number}}</td>
+          <td class="text-right">{{utilService.getPercentDecimal(reportTotal.workerCount, reportTotal.workerCount) | percent:'1.1'}}</td>
+        </tr>
+      </ng-container>
+      </tbody>
+    </table>
+  </div>
+
+</div>
